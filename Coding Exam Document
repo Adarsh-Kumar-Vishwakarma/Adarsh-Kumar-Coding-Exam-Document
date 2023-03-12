@@ -1,0 +1,528 @@
+----------------------Q1------------------------
+Write a program to add two matrices
+
+const matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+const matrix2 = [[10, 11, 12], [13, 14, 15], [16, 17, 18]];
+
+const result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+
+for (let i = 0; i < matrix1.length; i++) {
+  for (let j = 0; j < matrix1.length; j++) {
+    result[i][j] = matrix1[i][j] + matrix2[i][j];
+  }
+}
+
+for (let i = 0; i < result.length; i++) {
+  console.log(result[i]);
+ 
+}
+
+
+----------------------Q2------------------------
+Write a program to perform CRUD operation on database.
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE,
+  age INTEGER,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO users (name, email, age) VALUES ('John Doe', 'john@example.com', 30);
+
+SELECT * FROM users;
+
+UPDATE users SET name = 'Jane Doe', email = 'jane@example.com', age = 35 WHERE id = 1;
+
+DELETE FROM users WHERE id = 1;
+
+
+
+
+----------------------Q3------------------------
+Create a responsive registration form using bootstrap
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bootstrap Registration Form</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		.container {
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
+				<h2>Registration Form</h2>
+				<form>
+					<div class="form-group">
+						<label for="name">Name:</label>
+						<input type="text" class="form-control" id="name" placeholder="Enter your name">
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" class="form-control" id="email" placeholder="Enter your email">
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input type="password" class="form-control" id="password" placeholder="Enter your password">
+					</div>
+					<div class="form-group">
+						<label for="confirm-password">Confirm Password:</label>
+						<input type="password" class="form-control" id="confirm-password" placeholder="Confirm your password">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+----------------------Q4------------------------
+Write a program to find second largest number in an array?
+
+function secondLargest(arr) {
+  if (arr.length < 2) {
+    return "Array too small";
+  } else {
+    let largest = arr[0];
+    let secondLargest = arr[1];
+    for (let i = 2; i < arr.length; i++) {
+      if (arr[i] > largest) {
+        secondLargest = largest;
+        largest = arr[i];
+      } else if (arr[i] > secondLargest) {
+        secondLargest = arr[i];
+      }
+    }
+    return secondLargest;
+  }
+}
+
+const array = [3, 1, 4, 2, 5, 7, 6];
+console.log(secondLargest(array));
+
+
+
+----------------------Q5------------------------
+From the following table, write a SQL query to find the details of 1970 Nobel Prize winners. Order the results by subject, ascending except for 'Chemistry' and ‘Economics’ which will come at the end of the result set. Return year, subject, winner, country, and category.
+
+
+YEAR SUBJECT WINNER COUNTRY CATEGORY
+---- ------------------------- --------------------------------------------- ------------------------- ------------
+1970 Physics Hannes Alfven Sweden Scientist
+1970 Physics Louis Neel France Scientist
+1970 Chemistry Luis Federico Leloir France Scientist
+1970 Physiology Ulf von Euler Sweden Scientist
+1970 Physiology Bernard Katz Germany Scientist
+1970 Literature Aleksandr Solzhenitsyn Russia Linguist
+1970 Economics Paul Samuelson USA Economist
+1970 Physiology Julius Axelrod USA Scientist
+1971 Physics Dennis Gabor Hungary Scientist
+1971 Chemistry Gerhard Herzberg Germany Scientist
+1971 Peace Willy Brandt Germany Chancellor
+1971 Literature Pablo Neruda Chile Linguist
+1971 Economics Simon Kuznets Russia Economist
+1978 Peace Anwar al-Sadat Egypt President
+1978 Peace Menachem Begin Israel Prime Minister
+1987 Chemistry Donald J. Cram USA Scientist
+1987 Chemistry Jean-Marie Lehn France Scientist
+1987 Physiology Susumu Tonegawa Japan Scientist
+1994 Economics Reinhard Selten Germany Economist
+1994 Peace Yitzhak Rabin Israel Prime Minister
+1987 Physics Johannes Georg Bednorz Germany Scientist
+1987 Literature Joseph Brodsky Russia Linguist
+1987 Economics Robert Solow USA Economist
+1994 Literature Kenzaburo Oe Japan Linguist
+
+
+SELECT year, subject, winner, country, category
+FROM nobel_winners
+WHERE year = 1970
+ORDER BY
+  CASE 
+    WHEN subject = 'Chemistry' THEN 2
+    WHEN subject = 'Economics' THEN 3
+    ELSE 1
+  END,
+  subject ASC;
+  
+  
+  
+
+----------------------Q6------------------------
+Employee TABLE
+
+EMPNO |EMP_NAME |DEPT |SALARY |DOJ |BRANCH
+E101 |Amit |Production |45000 |12-Mar-00 |Bangalore
+E102 |Amit |HR |70000 |03-Jul-02 |Bangalore
+E103 |Sunita |management |120000 |11-Jan-01 |Mysore
+E105 |sunita |IT |67000 |01-Aug-01 |Mysore
+E106 |Mahesh |civil di |145000 |20-Sep-03 |Mumbai
+
+
+perform the following
+1.display all the fields of employee table
+ans:SELECT * FROM Employee;
+
+2.retrive employee number and their salary
+ans:SELECT EMPNO, SALARY FROM Employee;
+
+3.retrive average salary of all employee
+ans:SELECT AVG(SALARY) AS AVG_SALARY FROM Employee;
+
+4.retrive number of employee
+ans:SELECT COUNT(*) AS NUM_EMPLOYEES FROM Employee;
+
+5.retrive distinct number of employee
+ans:SELECT COUNT(DISTINCT EMPNO) AS NUM_DISTINCT_EMPLOYEES FROM Employee;
+
+6.retrive total salary of employee group by employee name and count similar names
+ans:SELECT EMP_NAME, SUM(SALARY) AS TOTAL_SALARY, COUNT(*) AS NUM_EMPLOYEES
+FROM Employee
+GROUP BY EMP_NAME;
+
+7.retrieve total salary of employee which is greater than >120000
+ans:SELECT SUM(SALARY) AS TOTAL_SALARY
+FROM Employee
+WHERE SALARY > 120000;
+
+8.display name of employee in descending order
+ans:SELECT EMP_NAME FROM Employee
+ORDER BY EMP_NAME DESC;
+
+9.display details of employee whose name is AMIT and salary greater than 50000;
+ans:SELECT * FROM Employee
+WHERE EMP_NAME = 'Amit' AND SALARY > 50000;
+
+----------------------Q7------------------------
+
+
+
+
+----------------------Q8------------------------
+Write a program to print mirror lower star triangle pattern of n lines
+
+Input: 7
+
+Output:
+* * * * * * *
+* * * * * *
+* * * * *
+* * * *
+* * *
+* *
+*
+*
+* *
+* * *
+* * * *
+* * * * *
+* * * * * *
+* * * * * * *
+
+
+function printMirrorLowerStarTriangle(n) {
+	for (let i = n; i >= 1; i--) {
+	  let row = '';
+	  for (let j = 1; j <= i; j++) {
+		row += '* ';
+	  }
+	  console.log(row);
+	}
+  
+	for (let i = 1; i <= n; i++) {
+	  let row = '';
+	  for (let j = 1; j <= i; j++) {
+		row += '* ';
+	  }
+	  console.log(row);
+	}
+  }
+  printMirrorLowerStarTriangle(7);
+  
+  
+  
+  
+
+----------------------Q9------------------------
+Write HTML code to create a table that displays the values listed below in a tabular format with proper header and alignment, a border of 1 px clr black, and the fields as Roll No., Student Name, Subject Name, and values as
+
+Ram, Physics
+Shyam, Math
+Murli, Chemistry
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>table</title>
+</head>
+<body>
+    <table style="border: 1px solid black;">
+  <thead>
+    <tr>
+      <th style="text-align: left; padding: 5px;">Roll No.</th>
+      <th style="text-align: left; padding: 5px;">Student Name</th>
+      <th style="text-align: left; padding: 5px;">Subject Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left; padding: 5px;">1</td>
+      <td style="text-align: left; padding: 5px;">Ram</td>
+      <td style="text-align: left; padding: 5px;">Physics</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; padding: 5px;">2</td>
+      <td style="text-align: left; padding: 5px;">Shyam</td>
+      <td style="text-align: left; padding: 5px;">Math</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; padding: 5px;">3</td>
+      <td style="text-align: left; padding: 5px;">Murli</td>
+      <td style="text-align: left; padding: 5px;">Chemistry</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
+
+
+
+
+
+----------------------Q10------------------------
+Write the Queries to implement
+a) Equi Join
+b) Non-Equi Join
+c) Self Join
+d) Full Outer Join
+
+CREATE TABLE employees (
+  id INT PRIMARY KEY,
+  name VARCHAR(50),
+  age INT,
+  department VARCHAR(50),
+  manager_id INT
+);
+
+INSERT INTO employees VALUES
+(1, 'John Doe', 30, 'Sales', 3),
+(2, 'Jane Smith', 25, 'Marketing', 4),
+(3, 'Bob Johnson', 40, 'Sales', NULL),
+(4, 'Sara Lee', 35, 'Marketing', NULL),
+(5, 'Tom Wilson', 45, 'Sales', 3);
+
+a) Equi Join
+
+CREATE TABLE managers (
+  id INT PRIMARY KEY,
+  name VARCHAR(50),
+  department VARCHAR(50)
+);
+
+INSERT INTO managers VALUES
+(3, 'Alice Brown', 'Sales'),
+(4, 'David Green', 'Marketing');
+
+SELECT *
+FROM employees
+JOIN managers
+ON employees.manager_id = managers.id;
+
+
+b) Non-Equi Join:
+SELECT *
+FROM employees
+JOIN managers
+ON employees.department = managers.department
+AND employees.age > 30;
+
+c) Self Join:
+SELECT e1.id, e1.name, e2.name as manager_name
+FROM employees e1
+JOIN employees e2
+ON e1.manager_id = e2.id;
+
+d) Full Outer Join:
+SELECT *
+FROM employees
+FULL OUTER JOIN managers
+ON employees.department = managers.department;
+
+
+
+
+
+----------------------Q11------------------------
+Write a code to check two accepted numbers are amicable or not.
+
+
+function isAmicable(num1, num2) {
+	
+	let sum1 = 0;
+	for (let i = 1; i < num1; i++) {
+	  if (num1 % i === 0) {
+		sum1 += i;
+	  }
+	}
+	
+	
+	let sum2 = 0;
+	for (let i = 1; i < num2; i++) {
+	  if (num2 % i === 0) {
+		sum2 += i;
+	  }
+	}
+	
+	
+	if (sum1 === num2 && sum2 === num1 && num1 !== num2) {
+	  return true;
+	} else {
+	  return false;
+	}
+  }
+  console.log(isAmicable(220, 284)); // true
+  console.log(isAmicable(1184, 1210)); // true
+  console.log(isAmicable(220, 221)); // false
+  
+  
+  
+
+----------------------Q12------------------------
+Write an SQL query to fetch duplicate records having matching data in some fields of a table.
+
+CREATE TABLE employees (
+  id INT PRIMARY KEY,
+  name VARCHAR(50),
+  email VARCHAR(50),
+  phone VARCHAR(20),
+  department VARCHAR(50)
+);
+INSERT INTO employees (id, name, email, phone, department) 
+VALUES (1, 'John Doe', 'john.doe@example.com', '555-1234', 'Sales');
+
+INSERT INTO employees (id, name, email, phone, department) 
+VALUES (2, 'Jane Smith', 'jane.smith@example.com', '555-5678', 'Marketing');
+
+INSERT INTO employees (id, name, email, phone, department) 
+VALUES (3, 'John Doe', 'john.doe@example.com', '555-9876', 'HR');
+
+INSERT INTO employees (id, name, email, phone, department) 
+VALUES (4, 'Bob Johnson', 'bob.johnson@example.com', '555-4321', 'Sales');
+
+
+SELECT name, email, COUNT(*) as count 
+FROM employees 
+GROUP BY name, email 
+HAVING count > 1;
+
+
+
+
+----------------------Q13------------------------
+Write code to check whether the string is palindrome or not
+
+function isPalindrome(str) {
+	str = str.replace(/[^0-9a-z]/gi, '').toLowerCase();
+	return str === str.split('').reverse().join('');
+  }
+  
+  console.log(isPalindrome("racecar"));
+  console.log(isPalindrome("hello"));
+  console.log(isPalindrome("A man, a plan, a canal: Panama"));
+
+
+
+
+
+----------------------Q14------------------------
+Consider the following database schema to write nested queries in SQL
+
+Supplier (id, name, city)
+Parts(pno, pname, pdescription)
+Supply(id, pno, cost)
+
+
+CREATE TABLE Supplier (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    city VARCHAR(255)
+);
+
+CREATE TABLE Parts (
+    pno INT PRIMARY KEY,
+    pname VARCHAR(255),
+    pdescription VARCHAR(255)
+);
+
+CREATE TABLE Supply (
+    id INT,
+    pno INT,
+    cost DECIMAL(10,2),
+    PRIMARY KEY (id, pno),
+    FOREIGN KEY (id) REFERENCES Supplier(id),
+    FOREIGN KEY (pno) REFERENCES Parts(pno)
+);
+
+INSERT INTO Supplier VALUES
+(1, 'RamRaj', 'Delhi'),
+(2, 'John', 'Mumbai'),
+(3, 'Anita', 'Kolkata'),
+(4, 'Suresh', 'Chennai'),
+(5, 'Ravi', 'Nagpur');
+
+INSERT INTO Parts VALUES
+(1, 'Nuts', 'Small metal fasteners'),
+(2, 'Bolts', 'Threaded fasteners'),
+(3, 'Washers', 'Flat metal discs');
+
+INSERT INTO Supply VALUES
+(1, 1, 0.50),
+(1, 2, 0.75),
+(2, 2, 0.80),
+(3, 1, 0.65),
+(3, 3, 0.20),
+(4, 1, 0.55),
+(4, 2, 0.70),
+(4, 3, 0.15),
+(5, 2, 0.90),
+(5, 3, 0.25);
+
+
+1.Find the names of the parts supplied by “RamRaj”
+SELECT Parts.pname
+FROM Supplier
+JOIN Supply ON Supplier.id = Supply.id
+JOIN Parts ON Supply.pno = Parts.pno
+WHERE Supplier.name = 'RamRaj';
+
+2.Find the names of the suppliers who supply “Nuts”
+SELECT Supplier.name
+FROM Parts
+JOIN Supply ON Parts.pno = Supply.pno
+JOIN Supplier ON Supply.id = Supplier.id
+WHERE Parts.pname = 'Nuts';
+
+3.Find the cost of bolts being supplied by Nagpur suppliers.
+SELECT Supply.cost
+FROM Supplier
+JOIN Supply ON Supplier.id = Supply.id
+JOIN Parts ON Supply.pno = Parts.pno
+WHERE Supplier.city = 'Nagpur' AND Parts.pname = 'Bolts';
+
+
+
+
+
+
